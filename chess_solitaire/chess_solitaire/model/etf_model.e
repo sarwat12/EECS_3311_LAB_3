@@ -21,7 +21,7 @@ feature {NONE} -- Initialization
 			-- Initialization for `Current'.
 		do
 			create s.make_empty
-			i := 0
+			i := 1
 		end
 
 feature -- model attributes
