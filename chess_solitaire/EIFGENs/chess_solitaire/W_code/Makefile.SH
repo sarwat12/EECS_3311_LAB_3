@@ -11,7 +11,7 @@ case "$O" in
 esac
 echo "Preparing C compilation"
 $spitshell >Makefile <<!GROK!THIS!
-INCLUDE_PATH =  -I"\$(ISE_LIBRARY)/library/encoding/implementation/include" -I"\$(ISE_LIBRARY)/library/time/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/implementation/gtk/Clib" `$ISE_LIBRARY/library/encoding/implementation/unix/Clib/iconv-config --include_path` `$ISE_LIBRARY/library/vision2/implementation/gtk/Clib/vision2-gtk-config --include_path`
+INCLUDE_PATH =  -I"\$(ISE_LIBRARY)\library\wel\spec\windows\include" -I"\$(ISE_LIBRARY)\library\time\spec\include" -I"\$(ISE_LIBRARY)\library\vision2\spec\include" -I"\$(ISE_LIBRARY)\C_library\zlib"
 SHELL = /bin/sh
 CC = $cc
 CPP = $cpp
@@ -53,12 +53,13 @@ $spitshell >>Makefile <<'!NO!SUBS!'
 .cpp.o:
 	$(CPP) $(CPPFLAGS) -c $<
 
-SUBDIRS = C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11 C12 C13 C14 C15 C16 C17 C18 C19 C20 C21 E1
+SUBDIRS = C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 C11 C12 C13 C14 C15 C16 C17 C18 C19 C20 C21 C22 C23 C24 C25 C26 C27 C28 C29 C30 C31 C32 C33 E1
 
 EXTERNALS =  \
-	`$(ISE_LIBRARY)/library/encoding/implementation/unix/Clib/iconv-config --library` \
-	`$(ISE_LIBRARY)/library/vision2/implementation/gtk/Clib/vision2-gtk-config --threads --object` \
-	`$(ISE_LIBRARY)/library/vision2/implementation/gtk/Clib/vision2-gtk-config --threads --library`
+	"$(ISE_LIBRARY)\library\wel\spec\$(ISE_C_COMPILER)\$(ISE_PLATFORM)\lib\mtwel.lib" \
+	"$ISE_LIBRARY\library\vision2\spec\$ISE_C_COMPILER\$ISE_PLATFORM\lib\mtvision2.lib" \
+	"$(ISE_LIBRARY)\C_library\libpng\spec\$ISE_C_COMPILER\$ISE_PLATFORM\lib\libpng.lib" \
+	"$(ISE_LIBRARY)\C_library\zlib\spec\$ISE_C_COMPILER\$ISE_PLATFORM\lib\zlib.lib"
 
 all: chess_solitaire
 
@@ -125,6 +126,42 @@ C20/Cobj20.o: Makefile E1/estructure.h
 C21/Cobj21.o: Makefile E1/estructure.h
 	cd C21 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
 
+C22/Cobj22.o: Makefile E1/estructure.h
+	cd C22 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C23/Cobj23.o: Makefile E1/estructure.h
+	cd C23 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C24/Cobj24.o: Makefile E1/estructure.h
+	cd C24 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C25/Cobj25.o: Makefile E1/estructure.h
+	cd C25 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C26/Cobj26.o: Makefile E1/estructure.h
+	cd C26 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C27/Cobj27.o: Makefile E1/estructure.h
+	cd C27 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C28/Cobj28.o: Makefile E1/estructure.h
+	cd C28 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C29/Cobj29.o: Makefile E1/estructure.h
+	cd C29 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C30/Cobj30.o: Makefile E1/estructure.h
+	cd C30 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C31/Cobj31.o: Makefile E1/estructure.h
+	cd C31 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C32/Cobj32.o: Makefile E1/estructure.h
+	cd C32 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
+C33/Cobj33.o: Makefile E1/estructure.h
+	cd C33 ; $(START_TEST) $(SHELL) Makefile.SH ; $(MAKE) $(END_TEST)
+
 E1/Makefile: E1/Makefile.SH
 	cd E1 ; $(SHELL) Makefile.SH
 
@@ -165,14 +202,14 @@ E1/einit.o: Makefile E1/Makefile E1/estructure.h
 E1/eparents.o: Makefile E1/Makefile E1/estructure.h
 	cd E1 ; $(MAKE) eparents.o
 
-OBJECTS= C21/Cobj21.o C20/Cobj20.o C19/Cobj19.o C18/Cobj18.o C17/Cobj17.o C16/Cobj16.o C15/Cobj15.o C14/Cobj14.o C13/Cobj13.o C12/Cobj12.o C11/Cobj11.o C10/Cobj10.o C9/Cobj9.o C8/Cobj8.o C7/Cobj7.o C6/Cobj6.o C5/Cobj5.o C4/Cobj4.o C3/Cobj3.o C2/Cobj2.o C1/Cobj1.o  E1/eoption.o E1/epattern.o E1/efrozen.o E1/ecall.o E1/eplug.o E1/eskelet.o E1/enames.o E1/evisib.o E1/ececil.o E1/einit.o E1/eparents.o
+OBJECTS= C33/Cobj33.o C32/Cobj32.o C31/Cobj31.o C30/Cobj30.o C29/Cobj29.o C28/Cobj28.o C27/Cobj27.o C26/Cobj26.o C25/Cobj25.o C24/Cobj24.o C23/Cobj23.o C22/Cobj22.o C21/Cobj21.o C20/Cobj20.o C19/Cobj19.o C18/Cobj18.o C17/Cobj17.o C16/Cobj16.o C15/Cobj15.o C14/Cobj14.o C13/Cobj13.o C12/Cobj12.o C11/Cobj11.o C10/Cobj10.o C9/Cobj9.o C8/Cobj8.o C7/Cobj7.o C6/Cobj6.o C5/Cobj5.o C4/Cobj4.o C3/Cobj3.o C2/Cobj2.o C1/Cobj1.o  E1/eoption.o E1/epattern.o E1/efrozen.o E1/ecall.o E1/eplug.o E1/eskelet.o E1/enames.o E1/evisib.o E1/ececil.o E1/einit.o E1/eparents.o
 
-PRECOMP_OBJECTS= "/cs/local/packages/Eiffel19.05/precomp/spec/linux-x86-64/EIFGENs/base-scoop-safe/W_code/preobj.o"
+PRECOMP_OBJECTS= "c:\users\sarwa\onedrive\documents\eiffel user files\19.05\precomp\spec\windows\EIFGENs\base-scoop-safe\W_code\precomp.lib"
 
 
 chess_solitaire: $(OBJECTS)  E1/emain.o Makefile
 	$(RM) chess_solitaire
-	$(CC) -o chess_solitaire $(CFLAGS) $(CCLDFLAGS)  $(OBJECTS) E1/emain.o \
+	$(CPP) -o chess_solitaire $(CPPFLAGS) $(CCLDFLAGS)  $(OBJECTS) E1/emain.o \
 		$(PRECOMP_OBJECTS) $(EXTERNALS) $(EIFLIB) $(LIBS)
 
 RCECIL = MTdebug.o MTidrs.o MTinterp.o mtipc.o MTnetwork.o MTupdate.o \

@@ -11,7 +11,7 @@ case "$O" in
 esac
 echo "Compiling C code in C18"
 $spitshell >Makefile <<!GROK!THIS!
-INCLUDE_PATH =  -I"\$(ISE_LIBRARY)/library/encoding/implementation/include" -I"\$(ISE_LIBRARY)/library/time/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/implementation/gtk/Clib" `$ISE_LIBRARY/library/encoding/implementation/unix/Clib/iconv-config --include_path` `$ISE_LIBRARY/library/vision2/implementation/gtk/Clib/vision2-gtk-config --include_path`
+INCLUDE_PATH =  -I"\$(ISE_LIBRARY)\library\wel\spec\windows\include" -I"\$(ISE_LIBRARY)\library\time\spec\include" -I"\$(ISE_LIBRARY)\library\vision2\spec\include" -I"\$(ISE_LIBRARY)\C_library\zlib"
 SHELL = /bin/sh
 CC = $cc
 CPP = $cpp
@@ -55,16 +55,16 @@ $spitshell >>Makefile <<'!NO!SUBS!'
 
 OBJECTS = big_file_C18_c.o 
 
-OLDOBJECTS =  ti1549.o ti1549d.o da1547.o da1547d.o da1527.o da1527d.o ti1548.o \
-	ti1548d.o da1552.o da1552d.o da1546.o da1546d.o kl1536.o kl1536d.o \
-	da1551.o da1551d.o fi1526.o fi1526d.o da1550.o da1550d.o kl1535.o \
-	kl1535d.o yy1525.o yy1525d.o kl1530.o kl1530d.o yy1524.o yy1524d.o \
-	kl1537.o kl1537d.o kl1532.o kl1532d.o kl1528.o kl1528d.o yy1523.o \
-	yy1523d.o ev1540.o ev1540d.o kl1531.o kl1531d.o kl1544.o kl1544d.o \
-	kl1542.o kl1542d.o kl1543.o kl1543d.o kl1545.o kl1545d.o kl1529.o \
-	kl1529d.o kl1539.o kl1539d.o kl1534.o kl1534d.o ki1541.o ki1541d.o \
-	kl1538.o kl1538d.o kl1533.o kl1533d.o uc1521.o uc1521d.o kl1522.o \
-	kl1522d.o uc1520.o uc1520d.o 
+OLDOBJECTS =  ev1533.o ev1533d.o ev1552.o ev1552d.o ev1551.o ev1551d.o ev1550.o \
+	ev1550d.o ev1531.o ev1531d.o ev1549.o ev1549d.o ev1548.o ev1548d.o \
+	ev1547.o ev1547d.o we1523.o we1523d.o we1524.o we1524d.o we1526.o \
+	we1526d.o ev1546.o ev1546d.o ev1545.o ev1545d.o ev1544.o ev1544d.o \
+	we1521.o we1521d.o we1520.o we1520d.o we1525.o we1525d.o we1522.o \
+	we1522d.o ev1543.o ev1543d.o ev1542.o ev1542d.o uc1527.o uc1527d.o \
+	kl1532.o kl1532d.o ev1541.o ev1541d.o ev1540.o ev1540d.o ev1539.o \
+	ev1539d.o ev1538.o ev1538d.o ev1537.o ev1537d.o ev1530.o ev1530d.o \
+	ev1529.o ev1529d.o ev1536.o ev1536d.o ev1535.o ev1535d.o ev1534.o \
+	ev1534d.o ev1528.o ev1528d.o 
 
 all: Cobj18.o
 

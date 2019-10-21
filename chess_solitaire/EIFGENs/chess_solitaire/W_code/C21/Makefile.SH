@@ -11,7 +11,7 @@ case "$O" in
 esac
 echo "Compiling C code in C21"
 $spitshell >Makefile <<!GROK!THIS!
-INCLUDE_PATH =  -I"\$(ISE_LIBRARY)/library/encoding/implementation/include" -I"\$(ISE_LIBRARY)/library/time/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/implementation/gtk/Clib" `$ISE_LIBRARY/library/encoding/implementation/unix/Clib/iconv-config --include_path` `$ISE_LIBRARY/library/vision2/implementation/gtk/Clib/vision2-gtk-config --include_path`
+INCLUDE_PATH =  -I"\$(ISE_LIBRARY)\library\wel\spec\windows\include" -I"\$(ISE_LIBRARY)\library\time\spec\include" -I"\$(ISE_LIBRARY)\library\vision2\spec\include" -I"\$(ISE_LIBRARY)\C_library\zlib"
 SHELL = /bin/sh
 CC = $cc
 CPP = $cpp
@@ -55,8 +55,16 @@ $spitshell >>Makefile <<'!NO!SUBS!'
 
 OBJECTS = big_file_C21_c.o 
 
-OLDOBJECTS =  fu1622.o fu1622d.o ta1619.o ta1619d.o pr1621.o pr1621d.o ha1620.o \
-	ha1620d.o ac1624.o ac1624d.o ev1623.o ev1623d.o kl1625.o kl1625d.o 
+OLDOBJECTS =  ev1619.o ev1619d.o ev1625.o ev1625d.o ev1627.o ev1627d.o ev1624.o \
+	ev1624d.o ev1640.o ev1640d.o ev1623.o ev1623d.o ev1622.o ev1622d.o \
+	ev1631.o ev1631d.o ev1636.o ev1636d.o ev1645.o ev1645d.o ev1633.o \
+	ev1633d.o ev1632.o ev1632d.o ev1643.o ev1643d.o ev1642.o ev1642d.o \
+	ev1628.o ev1628d.o ev1635.o ev1635d.o ev1634.o ev1634d.o ev1626.o \
+	ev1626d.o ev1630.o ev1630d.o ev1644.o ev1644d.o ev1649.o ev1649d.o \
+	ev1648.o ev1648d.o ev1620.o ev1620d.o ev1650.o ev1650d.o ev1647.o \
+	ev1647d.o ev1621.o ev1621d.o ev1641.o ev1641d.o ev1651.o ev1651d.o \
+	ev1629.o ev1629d.o ev1646.o ev1646d.o ev1639.o ev1639d.o ev1638.o \
+	ev1638d.o ev1637.o ev1637d.o 
 
 all: Cobj21.o
 

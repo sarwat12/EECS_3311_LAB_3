@@ -1,5 +1,5 @@
 /*
- * Code for class EV_ITEM_LIST_IMP [G#1]
+ * Code for class EV_HORIZONTAL_BOX
  */
 
 #include "eif_eiffel.h"
@@ -10,8 +10,8 @@
 extern "C" {
 #endif
 
-static EIF_TYPED_VALUE F1601_13021_body(EIF_REFERENCE);
-extern EIF_TYPED_VALUE F1601_13021(EIF_REFERENCE);
+extern EIF_TYPED_VALUE F1601_18152(EIF_REFERENCE);
+extern void F1601_18153(EIF_REFERENCE);
 extern void EIF_Minit1601(void);
 
 #ifdef __cplusplus
@@ -33,64 +33,72 @@ extern "C" {
 extern "C" {
 #endif
 
-/* {EV_ITEM_LIST_IMP}.interface */
-static EIF_TYPED_VALUE F1601_13021_body (EIF_REFERENCE Current)
+/* {EV_HORIZONTAL_BOX}.implementation */
+EIF_TYPED_VALUE F1601_18152 (EIF_REFERENCE Current)
+{
+	EIF_TYPED_VALUE r;
+	r.type = SK_REF;
+	r.it_r = *(EIF_REFERENCE *)(Current + RTWA(14779,Dtype(Current)));
+	return r;
+}
+
+
+/* {EV_HORIZONTAL_BOX}.create_implementation */
+void F1601_18153 (EIF_REFERENCE Current)
 {
 	GTCX
-	char *l_feature_name = "interface";
+	char *l_feature_name = "create_implementation";
 	RTEX;
-	EIF_REFERENCE Result = ((EIF_REFERENCE) 0);
-	
+	EIF_TYPED_VALUE up1x = {{0}, SK_POINTER};
+#define up1 up1x.it_p
+	EIF_REFERENCE tr1 = NULL;
 	RTCDT;
 	RTSN;
 	RTDA;
 	RTLD;
 	
-	RTLI(1);
+	RTLI(2);
 	RTLR(0,Current);
-	RTLIU(1);
-	RTLU (SK_REF, &Result);
+	RTLR(1,tr1);
+	RTLIU(2);
+	RTLU (SK_VOID, NULL);
 	RTLU (SK_REF, &Current);
 	
-	RTEAA(l_feature_name, 1600, Current, 0, 0, 19553);
+	RTEAA(l_feature_name, 1600, Current, 0, 0, 24812);
 	RTSA(dtype);
 	RTSC;
 	RTME(dtype, 0);
 	RTGC;
-	RTDBGEAA(1600, Current, 19553);
+	RTDBGEAA(1600, Current, 24812);
 	RTIV(Current, RTAL);
+	RTHOOK(1);
+	RTDBGAA(Current, dtype, 14779, 0xF80006B3, 0); /* implementation */
+	tr1 = RTLN(eif_new_type(1927, 0x01).id);
+	(FUNCTION_CAST(void, (EIF_REFERENCE)) RTWC(15652, Dtype(tr1)))(tr1);
+	RTNHOOK(1,1);
+	tr1 = RTCCL(tr1);
+	RTAR(Current, tr1);
+	*(EIF_REFERENCE *)(Current + RTWA(14779, dtype)) = (EIF_REFERENCE) tr1;
+	if (RTAL & CK_ENSURE) {
+		RTHOOK(2);
+		RTCT("implementation_created", EX_POST);
+		tr1 = ((up1x = (FUNCTION_CAST(EIF_TYPED_VALUE, (EIF_REFERENCE)) RTWF(14779, dtype))(Current)), (((up1x.type & SK_HEAD) == SK_REF)? (EIF_REFERENCE) 0: (up1x.it_r = RTBU(up1x))), (up1x.type = SK_POINTER), up1x.it_r);
+		if ((EIF_BOOLEAN)(tr1 != NULL)) {
+			RTCK;
+		} else {
+			RTCF;
+		}
+	}
 	RTVI(Current, RTAL);
 	RTRS;
-	RTHOOK(1);
+	RTHOOK(3);
 	RTDBGLE;
 	RTMD(0);
 	RTLE;
 	RTLO(2);
 	RTEE;
-	{ EIF_TYPED_VALUE r; r.type = SK_REF; r.it_r = Result; return r; }
+#undef up1
 }
-
-EIF_TYPED_VALUE F1601_13021 (EIF_REFERENCE Current)
-{
-	EIF_TYPED_VALUE r;
-	r.type = SK_REF;
-	r.it_r = *(EIF_REFERENCE *)(Current + RTWA(9327,Dtype(Current)));
-	if (!r.it_r) {
-		if (RTAT(RTWCT(9327, Dtype(Current), Dftype(Current)))) {
-			GTCX
-			RTLD;
-			RTLI(1);
-			RTLR(0,Current);
-			RTLIU(1);
-			r.it_r = (F1601_13021_body (Current)).it_r;
-			*(EIF_REFERENCE *)(Current + RTWA(9327,Dtype(Current))) = r.it_r;
-			RTAR(Current, r.it_r);
-			RTLE;
-		}
-	}
-	return r;
-}
-
 
 void EIF_Minit1601 (void)
 {

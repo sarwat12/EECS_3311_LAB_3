@@ -11,7 +11,7 @@ case "$O" in
 esac
 echo "Compiling C code in C3"
 $spitshell >Makefile <<!GROK!THIS!
-INCLUDE_PATH =  -I"\$(ISE_LIBRARY)/library/encoding/implementation/include" -I"\$(ISE_LIBRARY)/library/time/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/implementation/gtk/Clib" `$ISE_LIBRARY/library/encoding/implementation/unix/Clib/iconv-config --include_path` `$ISE_LIBRARY/library/vision2/implementation/gtk/Clib/vision2-gtk-config --include_path`
+INCLUDE_PATH =  -I"\$(ISE_LIBRARY)\library\wel\spec\windows\include" -I"\$(ISE_LIBRARY)\library\time\spec\include" -I"\$(ISE_LIBRARY)\library\vision2\spec\include" -I"\$(ISE_LIBRARY)\C_library\zlib"
 SHELL = /bin/sh
 CC = $cc
 CPP = $cpp
@@ -55,16 +55,16 @@ $spitshell >>Makefile <<'!NO!SUBS!'
 
 OBJECTS = big_file_C3_c.o 
 
-OLDOBJECTS =  es1047.o es1047d.o es1043.o es1043d.o es1046.o es1046d.o es1045.o \
-	es1045d.o et1041.o et1041d.o et1039.o et1039d.o et1044.o et1044d.o \
-	es1042.o es1042d.o et1040.o et1040d.o et1038.o et1038d.o yy1036.o \
-	yy1036d.o ev1035.o ev1035d.o yy1034.o yy1034d.o ev1033.o ev1033d.o \
-	ev1032.o ev1032d.o gr1031.o gr1031d.o ev1029.o ev1029d.o ev1028.o \
-	ev1028d.o ev1027.o ev1027d.o ev1057.o ev1057d.o ki1050.o ki1050d.o \
-	ev1056.o ev1056d.o ev1054.o ev1054d.o ev1053.o ev1053d.o uc1052.o \
-	uc1052d.o uc1051.o uc1051d.o ki1049.o ki1049d.o yy1037.o yy1037d.o \
-	ev1030.o ev1030d.o rt1055.o rt1055d.o uc1048.o uc1048d.o kl1025.o \
-	kl1025d.o uc1026.o uc1026d.o 
+OLDOBJECTS =  et1040.o et1040d.o et1039.o et1039d.o et1037.o et1037d.o et1038.o \
+	et1038d.o et1036.o et1036d.o c_1035.o c_1035d.o et1034.o et1034d.o \
+	et1033.o et1033d.o va1032.o va1032d.o ev1031.o ev1031d.o ev1030.o \
+	ev1030d.o ev1029.o ev1029d.o kl1028.o kl1028d.o we1027.o we1027d.o \
+	we1026.o we1026d.o ev1025.o ev1025d.o kl1057.o kl1057d.o uc1056.o \
+	uc1056d.o ev1055.o ev1055d.o we1054.o we1054d.o we1053.o we1053d.o \
+	we1052.o we1052d.o we1051.o we1051d.o we1050.o we1050d.o we1049.o \
+	we1049d.o we1048.o we1048d.o we1047.o we1047d.o we1046.o we1046d.o \
+	we1045.o we1045d.o we1044.o we1044d.o ev1043.o ev1043d.o we1042.o \
+	we1042d.o we1041.o we1041d.o 
 
 all: Cobj3.o
 

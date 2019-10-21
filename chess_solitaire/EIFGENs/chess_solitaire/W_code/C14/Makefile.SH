@@ -11,7 +11,7 @@ case "$O" in
 esac
 echo "Compiling C code in C14"
 $spitshell >Makefile <<!GROK!THIS!
-INCLUDE_PATH =  -I"\$(ISE_LIBRARY)/library/encoding/implementation/include" -I"\$(ISE_LIBRARY)/library/time/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/spec/include" -I"\$(ISE_LIBRARY)/library/vision2/implementation/gtk/Clib" `$ISE_LIBRARY/library/encoding/implementation/unix/Clib/iconv-config --include_path` `$ISE_LIBRARY/library/vision2/implementation/gtk/Clib/vision2-gtk-config --include_path`
+INCLUDE_PATH =  -I"\$(ISE_LIBRARY)\library\wel\spec\windows\include" -I"\$(ISE_LIBRARY)\library\time\spec\include" -I"\$(ISE_LIBRARY)\library\vision2\spec\include" -I"\$(ISE_LIBRARY)\C_library\zlib"
 SHELL = /bin/sh
 CC = $cc
 CPP = $cpp
@@ -53,18 +53,18 @@ $spitshell >>Makefile <<'!NO!SUBS!'
 .cpp.o:
 	$(CPP) $(CPPFLAGS) -c $<
 
-OBJECTS = big_file_C14_c.o 
+OBJECTS = big_file_C14_c.o big_file_C14_cpp.o 
 
-OLDOBJECTS =  ev1397.o ev1397d.o ev1408.o ev1408d.o ev1410.o ev1410d.o ev1412.o \
-	ev1412d.o ev1411.o ev1411d.o ev1420.o ev1420d.o ev1413.o ev1413d.o \
-	ev1395.o ev1395d.o ev1393.o ev1393d.o ev1396.o ev1396d.o ev1392.o \
-	ev1392d.o ev1390.o ev1390d.o ev1391.o ev1391d.o ev1409.o ev1409d.o \
-	ev1394.o ev1394d.o ev1419.o ev1419d.o ev1403.o ev1403d.o ev1389.o \
-	ev1389d.o ev1388.o ev1388d.o ev1414.o ev1414d.o ev1417.o ev1417d.o \
-	ev1418.o ev1418d.o ev1407.o ev1407d.o ev1406.o ev1406d.o ev1405.o \
-	ev1405d.o ev1404.o ev1404d.o ev1416.o ev1416d.o ev1398.o ev1398d.o \
-	ev1415.o ev1415d.o ev1402.o ev1402d.o ev1401.o ev1401d.o ev1400.o \
-	ev1400d.o ev1399.o ev1399d.o 
+OLDOBJECTS =  ki1391.o ki1391d.o kl1399.o kl1399d.o ki1398.o ki1398d.o ev1403.o \
+	ev1403d.o ki1392.o ki1392d.o ki1396.o ki1396d.o ki1393.o ki1393d.o \
+	we1417.o we1417d.o ev1402.o ev1402d.o kl1390.o kl1390d.o kl1389.o \
+	kl1389d.o kl1395.o kl1395d.o we1415.o we1415d.o we1420.o we1420d.o \
+	we1414.o we1414d.o we1419.o we1419d.o we1413.o we1413d.o we1411.o \
+	we1411d.o we1404.o we1404d.o we1410.o we1410d.o we1412.o we1412d.o \
+	we1416.o we1416d.o we1401.o we1401d.o ki1397.o ki1397d.o we1418.o \
+	we1418d.o we1406.o we1406d.o we1409.o we1409d.o ev1408.o ev1408d.o \
+	we1405.o we1405d.o uc1388.o uc1388d.o we1400.o we1400d.o we1407.o \
+	we1407d.o kl1394.o kl1394d.o 
 
 all: Cobj14.o
 
