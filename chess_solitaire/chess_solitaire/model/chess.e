@@ -5,7 +5,7 @@ note
 	revision: "$Revision$"
 
 class
-	ETF_MODEL
+	CHESS
 
 inherit
 	ANY
@@ -13,7 +13,7 @@ inherit
 			out
 		end
 
-create {ETF_MODEL_ACCESS}
+create {CHESS_ACCESS}
 	make
 
 feature {NONE} -- Initialization
@@ -24,15 +24,37 @@ feature {NONE} -- Initialization
 			i := 1
 		end
 
+feature --Implementation
+
 feature -- model attributes
 	s : STRING
 	i : INTEGER
 
 feature -- model operations
-	default_update
-			-- Perform update to the model state.
+
+	setup_chess
 		do
-			i := i + 1
+
+		end
+
+	start_game
+		do
+
+		end
+
+	moves
+		do
+
+		end
+
+	move_and_capture
+		do
+
+		end
+
+	reset_game
+		do
+			
 		end
 
 	reset

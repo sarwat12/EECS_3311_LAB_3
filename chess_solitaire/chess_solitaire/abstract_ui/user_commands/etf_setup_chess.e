@@ -6,17 +6,17 @@ note
 
 class
 	ETF_SETUP_CHESS
-inherit 
+inherit
 	ETF_SETUP_CHESS_INTERFACE
 create
 	make
-feature -- command 
+feature -- command
 	setup_chess(c: INTEGER_32 ; row: INTEGER_32 ; col: INTEGER_32)
-		require else 
+		require else
 			setup_chess_precond(c, row, col)
     	do
 			-- perform some update on the model state
-			model.default_update
+			model.setup_chess
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

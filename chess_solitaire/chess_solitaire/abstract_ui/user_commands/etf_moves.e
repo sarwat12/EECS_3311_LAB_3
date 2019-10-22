@@ -6,15 +6,15 @@ note
 
 class
 	ETF_MOVES
-inherit 
+inherit
 	ETF_MOVES_INTERFACE
 create
 	make
-feature -- command 
+feature -- command
 	moves(row: INTEGER_32 ; col: INTEGER_32)
     	do
 			-- perform some update on the model state
-			model.default_update
+			model.moves
 			etf_cmd_container.on_change.notify ([Current])
     	end
 
