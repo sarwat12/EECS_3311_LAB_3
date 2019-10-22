@@ -21,11 +21,13 @@ feature {NONE} -- Initialization
 			-- Initialization for `Current'.
 		do
 			create chess_board.make
+			create error.make_empty
 		end
 
 feature --Implementation
 
 	chess_board: CHESS_BOARD
+	error: STRING
 
 
 feature -- model operations
@@ -61,10 +63,20 @@ feature -- model operations
 			make
 		end
 
+	set_error(s: STRING)
+		do
+			error := s
+		end
+
 feature -- queries
 	out : STRING
 		do
 			create Result.make_empty
+			if error.is_empty then
+				create Result.make_empty
+			else
+				Result.append (error)
+			end
 		end
 
 end
