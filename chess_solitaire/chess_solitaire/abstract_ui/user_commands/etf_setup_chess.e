@@ -16,7 +16,7 @@ feature -- command
 			setup_chess_precond(c, row, col)
     	do
 			-- perform some update on the model state
-			model.setup_chess
+			model.setup_chess(c, row, col)
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

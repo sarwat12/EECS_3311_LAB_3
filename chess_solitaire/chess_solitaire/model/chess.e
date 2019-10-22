@@ -20,19 +20,17 @@ feature {NONE} -- Initialization
 	make
 			-- Initialization for `Current'.
 		do
-			create s.make_empty
-			i := 1
+			create chess_board.make
 		end
 
 feature --Implementation
 
-feature -- model attributes
-	s : STRING
-	i : INTEGER
+	chess_board: CHESS_BOARD
+
 
 feature -- model operations
 
-	setup_chess
+	setup_chess(c: INTEGER_32 ; row: INTEGER_32 ; col: INTEGER_32)
 		do
 
 		end
@@ -42,19 +40,19 @@ feature -- model operations
 
 		end
 
-	moves
+	moves(row: INTEGER_32 ; col: INTEGER_32)
 		do
 
 		end
 
-	move_and_capture
+	move_and_capture(r1: INTEGER_32 ; c1: INTEGER_32 ; r2: INTEGER_32 ; c2: INTEGER_32)
 		do
 
 		end
 
 	reset_game
 		do
-			
+
 		end
 
 	reset
@@ -66,11 +64,7 @@ feature -- model operations
 feature -- queries
 	out : STRING
 		do
-			create Result.make_from_string ("  ")
-			Result.append ("System State: default model state ")
-			Result.append ("(")
-			Result.append (i.out)
-			Result.append (")")
+			create Result.make_empty
 		end
 
 end

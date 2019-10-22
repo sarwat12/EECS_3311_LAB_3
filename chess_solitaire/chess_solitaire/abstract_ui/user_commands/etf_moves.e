@@ -14,7 +14,7 @@ feature -- command
 	moves(row: INTEGER_32 ; col: INTEGER_32)
     	do
 			-- perform some update on the model state
-			model.moves
+			model.moves(row, col)
 			etf_cmd_container.on_change.notify ([Current])
     	end
 
