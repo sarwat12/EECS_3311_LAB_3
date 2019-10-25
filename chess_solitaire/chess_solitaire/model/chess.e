@@ -20,6 +20,8 @@ feature {NONE} -- Initialization
 	make
 			-- Initialization for `Current'.
 		do
+			create piece_mapping.make_empty
+			set_mapping
 			create chess_board.make
 			create message.make_empty
 			create error.make_empty
@@ -34,6 +36,7 @@ feature --Implementation
 	error: STRING
 	num_pieces: INTEGER
 	game_started: BOOLEAN
+	piece_mapping: ARRAY[STRING]
 
 
 feature -- model operations
@@ -75,30 +78,38 @@ feature -- model operations
 			error := s
 		end
 
+	set_mapping
+		do
+			piece_mapping.force ("K", piece_mapping.count + 1)
+			piece_mapping.force ("Q", piece_mapping.count + 1)
+			piece_mapping.force ("N", piece_mapping.count + 1)
+			piece_mapping.force ("B", piece_mapping.count + 1)
+			piece_mapping.force ("R", piece_mapping.count + 1)
+			piece_mapping.force ("P", piece_mapping.count + 1)
+		end
+
 feature -- queries
 	out : STRING
 		do
 			create Result.make_empty
-			Result.append ("# of chess pieces on board: ")
-			Result.append_integer (num_pieces)
-			Result.append ("%N")
-			if game_started = False then
-				Result.append("Game being Setup...%N")
-			end
-			if error.is_empty then
-				Result.append (message)
-			else
+
+			Result.append ("# of chess pieces on board: " + num_pieces.out + "%N")
+
+			if not error.is_empty then
 				Result.append (error)
 			end
+
 			across 1 |..| 4 is i loop
 				across 1 |..| 4 is j loop
 					if chess_board.board.item (i, j) ~ 0 then
 						Result.append(".")
 					else
-
+						Result.append (piece_mapping.item (chess_board.board.item (i, j)))
 					end
 				end
-				Result.append ("%N")
+				if i /= 4 then
+					Result.append ("%N")
+				end
 			end
 		end
 
