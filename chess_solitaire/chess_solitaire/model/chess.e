@@ -38,12 +38,10 @@ feature --Implementation
 
 feature -- model operations
 
-	setup_chess(c: INTEGER_32 ; row: INTEGER_32 ; col: INTEGER_32)
+	setup_chess(c: CHARACTER ; row: INTEGER_32 ; col: INTEGER_32)
 		do
 			chess_board.board.put (c, row, col)
 			num_pieces := num_pieces + 1
-			message.append ("# of chess pieces on board: ")
-			message.append_integer (num_pieces)
 		end
 
 	start_game
@@ -81,10 +79,26 @@ feature -- queries
 	out : STRING
 		do
 			create Result.make_empty
+			Result.append ("# of chess pieces on board: ")
+			Result.append_integer (num_pieces)
+			Result.append ("%N")
+			if game_started = False then
+				Result.append("Game being Setup...%N")
+			end
 			if error.is_empty then
 				Result.append (message)
 			else
 				Result.append (error)
+			end
+			across 1 |..| 4 is i loop
+				across 1 |..| 4 is j loop
+					if chess_board.board.item (i, j) ~ 'E' then
+						Result.append(".")
+					else
+						Result.append_character (chess_board.board.item (i, j))
+					end
+				end
+				Result.append ("%N")
 			end
 		end
 

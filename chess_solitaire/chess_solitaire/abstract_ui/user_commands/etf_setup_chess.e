@@ -19,7 +19,7 @@ feature -- command
 			if model.game_started = TRUE then
 				model.set_error ("Error: Game already started")
 			else
-				model.setup_chess(c, row, col)
+				model.setup_chess(c.to_character_8, row, col)
 			end
 			etf_cmd_container.on_change.notify ([Current])
     	end
