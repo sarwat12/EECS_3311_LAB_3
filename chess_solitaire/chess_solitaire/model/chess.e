@@ -21,25 +21,34 @@ feature {NONE} -- Initialization
 			-- Initialization for `Current'.
 		do
 			create chess_board.make
+			create message.make_empty
 			create error.make_empty
+			num_pieces := 0
+			game_started:= FALSE
 		end
 
 feature --Implementation
 
 	chess_board: CHESS_BOARD
+	message: STRING
 	error: STRING
+	num_pieces: INTEGER
+	game_started: BOOLEAN
 
 
 feature -- model operations
 
 	setup_chess(c: INTEGER_32 ; row: INTEGER_32 ; col: INTEGER_32)
 		do
-
+			chess_board.board.put (c, row, col)
+			num_pieces := num_pieces + 1
+			message.append ("# of chess pieces on board: ")
+			message.append_integer (num_pieces)
 		end
 
 	start_game
 		do
-
+			game_started := TRUE
 		end
 
 	moves(row: INTEGER_32 ; col: INTEGER_32)
@@ -54,7 +63,7 @@ feature -- model operations
 
 	reset_game
 		do
-
+			make
 		end
 
 	reset
@@ -73,7 +82,7 @@ feature -- queries
 		do
 			create Result.make_empty
 			if error.is_empty then
-				create Result.make_empty
+				Result.append (message)
 			else
 				Result.append (error)
 			end

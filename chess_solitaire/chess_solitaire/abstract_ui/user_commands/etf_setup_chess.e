@@ -16,7 +16,11 @@ feature -- command
 			setup_chess_precond(c, row, col)
     	do
 			-- perform some update on the model state
-			model.setup_chess(c, row, col)
+			if model.game_started = TRUE then
+				model.set_error ("Error: Game already started")
+			else
+				model.setup_chess(c, row, col)
+			end
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

@@ -14,7 +14,11 @@ feature -- command
 	reset_game
     	do
 			-- perform some update on the model state
-			model.reset_game
+			if model.game_started = FALSE then
+				model.set_error ("Error: Game not yet started")
+			else
+				model.reset_game
+			end
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

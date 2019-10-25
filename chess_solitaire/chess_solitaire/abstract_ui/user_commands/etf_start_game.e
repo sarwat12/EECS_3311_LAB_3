@@ -14,7 +14,11 @@ feature -- command
 	start_game
     	do
 			-- perform some update on the model state
-			model.start_game
+			if model.game_started = TRUE then
+				model.set_error ("Error: Game already started")
+			else
+				model.start_game
+			end
 			etf_cmd_container.on_change.notify ([Current])
     	end
 
