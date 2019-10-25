@@ -17,13 +17,13 @@ feature -- command
     	do
 			-- perform some update on the model state
 			if (model.game_started = TRUE) then
-				model.set_error ("Error: Game already started%N")
+				model.set_error ("  Error: Game already started%N")
 			elseif row < 1 or row > 4 or col < 1 or col > 4 then
-				model.set_error ("Error: (" + row.out + ", " + col.out + ") not a valid slot%N")
+				model.set_error ("  Error: (" + row.out + ", " + col.out + ") not a valid slot%N")
 			elseif model.chess_board.board.item (row, col) /= 0 then
-				model.set_error ("Error: Slot @ (" + row.out + ", " + col.out + ") already occupied%N")
+				model.set_error ("  Error: Slot @ (" + row.out + ", " + col.out + ") already occupied%N")
 			elseif model.game_started = FALSE and model.chess_board.board.item (row, col) = 0 then
-				model.set_error ("Game being Setup...%N")
+				model.set_error ("  Game being Setup...%N")
 				model.setup_chess(c, row, col)
 			end
 			etf_cmd_container.on_change.notify ([Current])

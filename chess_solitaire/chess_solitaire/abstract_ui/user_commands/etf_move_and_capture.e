@@ -15,7 +15,7 @@ feature -- command
     	do
 			-- perform some update on the model state
 			if model.game_started = FALSE then
-				model.set_error ("Error: Game not yet started%N")
+				model.set_error ("  Error: Game not yet started%N")
 			else
 				model.move_and_capture(r1, c1, r2, c2)
 			end

@@ -27,6 +27,7 @@ feature {NONE} -- Initialization
 			create error.make_empty
 			num_pieces := 0
 			game_started:= FALSE
+			start := 1
 		end
 
 feature --Implementation
@@ -37,6 +38,7 @@ feature --Implementation
 	num_pieces: INTEGER
 	game_started: BOOLEAN
 	piece_mapping: ARRAY[STRING]
+	start: INTEGER
 
 
 feature -- model operations
@@ -45,21 +47,23 @@ feature -- model operations
 		do
 			chess_board.board.put (c, row, col)
 			num_pieces := num_pieces + 1
+			start := start + 1
 		end
 
 	start_game
 		do
 			game_started := TRUE
+			start := start + 1
 		end
 
 	moves(row: INTEGER_32 ; col: INTEGER_32)
 		do
-
+			start := start + 1
 		end
 
 	move_and_capture(r1: INTEGER_32 ; c1: INTEGER_32 ; r2: INTEGER_32 ; c2: INTEGER_32)
 		do
-
+			start := start + 1
 		end
 
 	reset_game
@@ -93,13 +97,18 @@ feature -- queries
 		do
 			create Result.make_empty
 
-			Result.append ("# of chess pieces on board: " + num_pieces.out + "%N")
+			Result.append ("  # of chess pieces on board: " + num_pieces.out + "%N")
+
+			if start = 1 then
+				Result.append("  Game being Setup...%N")
+			end
 
 			if not error.is_empty then
 				Result.append (error)
 			end
 
 			across 1 |..| 4 is i loop
+				Result.append ("  ")
 				across 1 |..| 4 is j loop
 					if chess_board.board.item (i, j) ~ 0 then
 						Result.append(".")
