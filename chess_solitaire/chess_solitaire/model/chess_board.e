@@ -19,12 +19,12 @@ create
 feature --Constructor
 	make
 		do
-			create board.make_filled ('E', 4, 4)
+			create board.make_filled (0, 4, 4)
 			num_pieces := 0
 		end
 
 feature --Board Implementation
-	board: ARRAY2[CHARACTER]
+	board: ARRAY2[INTEGER]
 	num_pieces: INTEGER
 
 

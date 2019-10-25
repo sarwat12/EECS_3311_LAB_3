@@ -38,7 +38,7 @@ feature --Implementation
 
 feature -- model operations
 
-	setup_chess(c: CHARACTER ; row: INTEGER_32 ; col: INTEGER_32)
+	setup_chess(c: INTEGER ; row: INTEGER_32 ; col: INTEGER_32)
 		do
 			chess_board.board.put (c, row, col)
 			num_pieces := num_pieces + 1
@@ -92,10 +92,10 @@ feature -- queries
 			end
 			across 1 |..| 4 is i loop
 				across 1 |..| 4 is j loop
-					if chess_board.board.item (i, j) ~ 'E' then
+					if chess_board.board.item (i, j) ~ 0 then
 						Result.append(".")
 					else
-						Result.append_character (chess_board.board.item (i, j))
+
 					end
 				end
 				Result.append ("%N")
