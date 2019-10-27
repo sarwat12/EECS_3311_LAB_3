@@ -44,21 +44,26 @@ feature -- model operations
 		do
 			chess_board.board.put (c, row, col)
 			num_pieces := num_pieces + 1
-			start := start + 1
+			set_start
 		end
 
 	start_game
 		do
 			game_started := TRUE
-			start := start + 1
+			set_start
 		end
 
 	moves(row: INTEGER_32 ; col: INTEGER_32)
 		do
-			start := start + 1
+			set_start
 		end
 
 	move_and_capture(r1: INTEGER_32 ; c1: INTEGER_32 ; r2: INTEGER_32 ; c2: INTEGER_32)
+		do
+			set_start
+		end
+
+	set_start
 		do
 			start := start + 1
 		end
