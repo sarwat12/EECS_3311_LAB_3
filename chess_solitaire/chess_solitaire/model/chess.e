@@ -25,6 +25,7 @@ feature {NONE} -- Initialization
 			create error.make_empty
 			num_pieces := 0
 			game_started:= FALSE
+			game_finished:= FALSE
 			start := 1
 		end
 
@@ -35,6 +36,7 @@ feature --Implementation
 	error: STRING
 	num_pieces: INTEGER
 	game_started: BOOLEAN
+	game_finished: BOOLEAN
 	start: INTEGER
 
 
@@ -82,6 +84,16 @@ feature -- model operations
 	set_error(s: STRING)
 		do
 			error := s
+		end
+
+	set_game_started(b: BOOLEAN)
+		do
+			game_started := b
+		end
+
+	set_game_finished(b: BOOLEAN)
+		do
+			game_finished := b
 		end
 
 
