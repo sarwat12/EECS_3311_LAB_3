@@ -90,7 +90,7 @@
   ..B.
 ->move_and_capture(2,1,3,3)
   # of chess pieces on board: 4
-  Game In Progress...
+  Error: Slot @ (3, 3) not occupied
   ...R
   N..P
   ....
