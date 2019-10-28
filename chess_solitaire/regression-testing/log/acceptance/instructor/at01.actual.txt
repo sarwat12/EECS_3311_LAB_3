@@ -62,7 +62,7 @@
   ..B.
 ->moves(2,1)
   # of chess pieces on board: 4
-  Error: Game already over
+  Error: Game not yet started
   ...R
   N...
   ...P

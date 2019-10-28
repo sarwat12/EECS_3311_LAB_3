@@ -23,12 +23,17 @@ feature --Constructor
 			num_pieces := 0
 			create piece_mapping.make_empty
 			set_mapping
+			create moves_board.make_filled ([0, 0], 4, 4)
 		end
 
 feature --Board Implementation
 	board: ARRAY2[INTEGER]
 	num_pieces: INTEGER
 	piece_mapping: ARRAY[STRING]
+	x: INTEGER
+	y: INTEGER
+	moves_board: ARRAY2[TUPLE[a: INTEGER; b:INTEGER]]
+	moves_trigger: INTEGER
 
 
 feature --Queries about the board
@@ -47,27 +52,55 @@ feature --Queries about the board
 feature --Queries about chess
 	king_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
-
+			Result := FALSE
+			if (r2 = r1 + 1 or r2 = r1 - 1) and c2 = c1 then
+				Result := TRUE
+			end
+			if (c2 = c1 + 1 or c2 = c1 - 1) and r2 = r1 then
+				Result := TRUE
+			end
+			if ((r2 = r1 + 1) or (r2 = r1 - 1)) and ((c2 = c1 + 1) or (c2 = c1 - 1))  then
+				Result := TRUE
+			end
 		end
 
 	queen_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
-
+			Result := FALSE
+			if ((r2 - r1) = (c2 - c1)) then
+				Result := TRUE
+			end
+			if r2 = r1 then
+				Result := TRUE
+			end
+			if c2 = c1 then
+				Result := TRUE
+			end
 		end
 
 	knight_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
+			Result := FALSE
 
 		end
 
 	bishop_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
-
+			Result := FALSE
+			if ((r2 - r1) = (c2 - c1)) then
+				Result := TRUE
+			end
 		end
 
 	rook_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
-
+			Result := FALSE
+			if c2 = c1 then
+				Result := TRUE
+			end
+			if r2 = r1 then
+				Result := TRUE
+			end
 		end
 
 	pawn_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
@@ -162,8 +195,27 @@ feature --Commands
 			piece_mapping.force ("P", piece_mapping.count + 1)
 		end
 
-feature --Redefined 'out' feature
-	out: STRING
+	print_moves(row: INTEGER_32 ; col: INTEGER_32): STRING
+	do
+		x:= row
+		y:= col
+		create Result.make_empty
+		across 1 |..| 4 is i loop
+				Result.append ("  ")
+				across 1 |..| 4 is j loop
+					if i = x and j = y then
+						Result.append(piece_mapping.item (board.item (i, j)))
+					else
+						Result.append (".")
+					end
+				end
+				if i /= 4 then
+					Result.append ("%N")
+				end
+			end
+	end
+
+	print_board: STRING
 		do
 			create Result.make_empty
 			across 1 |..| 4 is i loop
@@ -179,6 +231,23 @@ feature --Redefined 'out' feature
 					Result.append ("%N")
 				end
 			end
+		end
+
+		set_moves_trigger
+			do
+				moves_trigger := 1
+			end
+
+feature --Redefined 'out' feature
+	out: STRING
+		do
+			create Result.make_empty
+			if moves_trigger = 1 then
+				Result.append(print_moves(x,y))
+			else
+				Result.append (print_board)
+			end
+
 		end
 
 invariant

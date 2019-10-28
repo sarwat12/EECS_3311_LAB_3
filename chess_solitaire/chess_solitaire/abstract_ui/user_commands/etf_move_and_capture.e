@@ -14,7 +14,9 @@ feature -- command
 	move_and_capture(r1: INTEGER_32 ; c1: INTEGER_32 ; r2: INTEGER_32 ; c2: INTEGER_32)
     	do
 			-- perform some update on the model state
-			if model.game_started = FALSE then
+			if model.start = 0 then
+				model.set_error ("  Error: Game already over%N")
+			elseif model.game_started = FALSE then
 				model.set_error ("  Error: Game not yet started%N")
 			elseif r1 < 1 or r1 > 4 or c1 < 1 or c1 > 4 then
 				model.set_error ("  Error: (" + r1.out + ", " + c1.out + ") not a valid slot%N")

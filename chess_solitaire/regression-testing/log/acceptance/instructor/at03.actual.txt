@@ -34,7 +34,7 @@
   ..B.
 ->moves(5,1)
   # of chess pieces on board: 4
-  Error: Game already over
+  Error: Game not yet started
   ...R
   N...
   ...P
@@ -48,21 +48,21 @@
   ..B.
 ->moves(5,1)
   # of chess pieces on board: 4
-  Error: Game already over
+  Error: (5, 1) not a valid slot
   ...R
   N...
   ...P
   ..B.
 ->moves(4,0)
   # of chess pieces on board: 4
-  Error: Game already over
+  Error: (4, 0) not a valid slot
   ...R
   N...
   ...P
   ..B.
 ->moves(2,2)
   # of chess pieces on board: 4
-  Error: Game already over
+  Error: Slot @ (2, 2) not occupied
   ...R
   N...
   ...P
