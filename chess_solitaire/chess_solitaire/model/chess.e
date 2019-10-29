@@ -82,6 +82,7 @@ feature -- model operations
 		do
 
 			set_start
+
 			chess_board.set_moves_trigger
 		end
 
@@ -102,6 +103,7 @@ feature -- model operations
 				(r2 > 0 or r2 < 5 or c2 > 0 or c2 < 5)
 		do
 			set_start
+			
 		end
 
 	set_start

@@ -244,6 +244,7 @@ feature --Redefined 'out' feature
 			create Result.make_empty
 			if moves_trigger = 1 then
 				Result.append(print_moves(x,y))
+				moves_trigger := 0
 			else
 				Result.append (print_board)
 			end
