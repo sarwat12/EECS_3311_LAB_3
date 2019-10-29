@@ -106,7 +106,8 @@ feature -- model operations
 			if chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "B" then
 				if chess_board.bishop_is_valid_move (r1, c1, r2, c2) then
 					if chess_board.block_exists_bishop(r1,c1,r2,c2) then
-						set_error ("  Error: Block exists between (4, 3) and (2, 1)%N")
+						set_error ("  Error: Block exists between ("
+						+ r1.out + ", " + c1.out + ") and (" + r2.out + ", " + c2.out + ")%N")
 					else
 						chess_board.capture (r1, c1, r2, c2)
 						set_error ("  Game In Progress...%N")

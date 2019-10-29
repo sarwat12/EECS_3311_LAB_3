@@ -116,7 +116,14 @@ feature --Queries about chess
 
 	block_exists_bishop(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER): BOOLEAN
 		do
-			
+			Result := FALSE
+			if (r2 = r1 + 1 and c2 = c1 + 1) or (r2 = r1 - 1 and c2 = c1 - 1) then
+				Result := FALSE
+			end
+			if (r2 = r1 - 1 and c2 = c1 + 1) or (r2 = r1 + 1 and c2 = c1 - 1) then
+				Result := FALSE
+			end
+
 		end
 
 	rook_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
