@@ -124,6 +124,49 @@ feature --Queries about chess
 				Result := FALSE
 			end
 
+			if r2 - r1 = 2 and c2 - c1 = 2 then  --checking down-right diagonal
+				if board.item (r1 + 1, c1 + 1) /= 0 then
+					Result := TRUE
+				end
+			end
+			if r2 - r1 = 3 and c2 - c1 = 3 then --checking down-right diagonal
+				if (board.item (r1 + 1, c1 + 1) /= 0) or (board.item (r1 + 2, c1 + 2) /= 0) then
+					Result := TRUE
+				end
+			end
+
+			if r2 - r1 = -2 and c2 - c1 = -2 then --checking up-left diagonal
+				if board.item (r1 - 1, c1 - 1) /= 0 then
+					Result := TRUE
+				end
+			end
+			if r2 - r1 = -3 and c2 - c1 = -3 then --checking up-left diagonal
+				if (board.item (r1 - 1, c1 - 1) /= 0) or (board.item (r1 - 2, c1 - 2) /= 0) then
+					Result := TRUE
+				end
+			end
+
+			if r2 - r1 = -2 and c2 - c1 = 2 then  --checking up-right diagonal
+				if board.item (r1 - 1, c1 + 1) /= 0 then
+					Result := TRUE
+				end
+			end
+			if r2 - r1 = -3 and c2 - c1 = 3 then --checking up-right diagonal
+				if (board.item (r1 - 1, c1 + 1) /= 0) or (board.item (r1 - 2, c1 + 2) /= 0) then
+					Result := TRUE
+				end
+			end
+
+			if r2 - r1 = 2 and c2 - c1 = -2 then  --checking down-left diagonal
+				if board.item (r1 + 1, c1 - 1) /= 0 then
+					Result := TRUE
+				end
+			end
+			if r2 - r1 = 3 and c2 - c1 = -3 then --checking down-left diagonal
+				if (board.item (r1 + 1, c1 - 1) /= 0) or (board.item (r1 + 2, c1 - 2) /= 0) then
+					Result := TRUE
+				end
+			end
 		end
 
 	rook_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
