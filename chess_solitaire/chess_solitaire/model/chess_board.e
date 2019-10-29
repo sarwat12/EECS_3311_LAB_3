@@ -27,13 +27,13 @@ feature --Constructor
 		end
 
 feature --Board Implementation
-	board: ARRAY2[INTEGER]
+	board: ARRAY2[INTEGER] --multi-dimesional board for storing and representing chess pieces
 	num_pieces: INTEGER
-	piece_mapping: ARRAY[STRING]
-	x: INTEGER
-	y: INTEGER
-	moves_board: ARRAY2[TUPLE[a: INTEGER; b:INTEGER]]
-	moves_trigger: INTEGER
+	piece_mapping: ARRAY[STRING]  --Mapping for each chess piece to its corresponding integer
+	x: INTEGER --for later use in ETF_MOVES
+	y: INTEGER --for later use in ETF_MOVES
+	moves_board: ARRAY2[TUPLE[a: INTEGER; b:INTEGER]] --for later use in ETF_MOVES
+	moves_trigger: INTEGER  --signal for initiating ET_MOVES output
 
 
 feature --Queries about the board
@@ -53,59 +53,97 @@ feature --Queries about chess
 	king_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
 			Result := FALSE
-			if (r2 = r1 + 1 or r2 = r1 - 1) and c2 = c1 then
-				Result := TRUE
-			end
-			if (c2 = c1 + 1 or c2 = c1 - 1) and r2 = r1 then
-				Result := TRUE
-			end
-			if ((r2 = r1 + 1) or (r2 = r1 - 1)) and ((c2 = c1 + 1) or (c2 = c1 - 1))  then
-				Result := TRUE
+			if is_valid_index (r2, c2) then
+				if (r2 = r1 + 1 or r2 = r1 - 1) and c2 = c1 then
+					Result := TRUE
+				end
+				if (c2 = c1 + 1 or c2 = c1 - 1) and r2 = r1 then
+					Result := TRUE
+				end
+				if ((r2 = r1 + 1) or (r2 = r1 - 1)) and ((c2 = c1 + 1) or (c2 = c1 - 1))  then
+					Result := TRUE
+				end
 			end
 		end
 
 	queen_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
 			Result := FALSE
-			if ((r2 - r1) = (c2 - c1)) then
-				Result := TRUE
+			if is_valid_index (r2, c2) then
+				if ((r2 - r1) = (c2 - c1)) then
+					Result := TRUE
+				end
+				if r2 = r1 then
+					Result := TRUE
+				end
+				if c2 = c1 then
+					Result := TRUE
+				end
 			end
-			if r2 = r1 then
-				Result := TRUE
-			end
-			if c2 = c1 then
-				Result := TRUE
-			end
+		end
+
+	block_exists_queen(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER): BOOLEAN
+		do
+
 		end
 
 	knight_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
 			Result := FALSE
+			if is_valid_index (r2, c2) then
+
+			end
+		end
+
+	block_exists_knight(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER): BOOLEAN
+		do
 
 		end
 
 	bishop_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
+		local
+			a,b :INTEGER
 		do
 			Result := FALSE
-			if ((r2 - r1) = (c2 - c1)) then
-				Result := TRUE
+			a := r2 - r1
+			b := c2 - c1
+			if is_valid_index (r2, c2) then
+				if (a.abs = b.abs) then
+					Result := TRUE
+				end
 			end
+		end
+
+	block_exists_bishop(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER): BOOLEAN
+		do
+			
 		end
 
 	rook_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
 			Result := FALSE
-			if c2 = c1 then
-				Result := TRUE
+			if is_valid_index (r2, c2) then
+				if c2 = c1 then
+					Result := TRUE
+				end
+				if r2 = r1 then
+					Result := TRUE
+				end
 			end
-			if r2 = r1 then
-				Result := TRUE
-			end
+		end
+
+	block_exists_rook(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER): BOOLEAN
+		do
+
 		end
 
 	pawn_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
+			Result := FALSE
 
+			if is_valid_index (r2, c2)  and (r2 = r1 + 1) and (c2 = c1 + 1) then
+				Result := TRUE
+			end
 		end
 
 feature --Piece Movements	
