@@ -14,7 +14,7 @@ feature -- command
 	moves(row: INTEGER_32 ; col: INTEGER_32)
     	do
 			-- perform some update on the model state
-			if model.start = 0 then
+			if model.game_finished = TRUE then
 				model.set_error ("  Error: Game already over%N")
 			elseif model.game_started = FALSE then
 				model.set_error ("  Error: Game not yet started%N")

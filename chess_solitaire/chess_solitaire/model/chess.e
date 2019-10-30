@@ -82,7 +82,8 @@ feature -- model operations
 		do
 
 			set_start
-
+			chess_board.set_x (row)
+			chess_board.set_y (col)
 			chess_board.set_moves_trigger
 		end
 
@@ -103,6 +104,7 @@ feature -- model operations
 				(r2 > 0 or r2 < 5 or c2 > 0 or c2 < 5)
 		do
 			set_start
+			--in case of bishop
 			if chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "B" then
 				if chess_board.bishop_is_valid_move (r1, c1, r2, c2) then
 					if chess_board.block_exists_bishop(r1,c1,r2,c2) then
@@ -110,8 +112,116 @@ feature -- model operations
 						+ r1.out + ", " + c1.out + ") and (" + r2.out + ", " + c2.out + ")%N")
 					else
 						chess_board.capture (r1, c1, r2, c2)
+						num_pieces := num_pieces - 1
+						if num_pieces = 1 then
+							set_error ("  Game Over: You Win!%N")
+							game_finished := TRUE
+						else
+							set_error ("  Game In Progress...%N")
+						end
+					end
+				else
+					set_error ("  Error: Invalid move of B from ("
+					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
+				end
+			--end
+
+			--in case of knight
+			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "N" then
+				if chess_board.knight_is_valid_move (r1, c1, r2, c2) then
+					if chess_board.knight_block = TRUE then
+						set_error ("  Error: Block exists between ("
+						+ r1.out + ", " + c1.out + ") and (" + r2.out + ", " + c2.out + ")%N")
+					else
+						chess_board.capture (r1, c1, r2, c2)
+						num_pieces := num_pieces - 1
+						if num_pieces = 1 then
+							set_error ("  Game Over: You Win!%N")
+							game_finished := TRUE
+						else
+							set_error ("  Game In Progress...%N")
+						end
+					end
+				else
+					set_error ("  Error: Invalid move of B from ("
+					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
+				end
+			--end
+
+			--in case of king
+			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "K" then
+				if chess_board.king_is_valid_move (r1, c1, r2, c2) then
+					chess_board.capture (r1, c1, r2, c2)
+					num_pieces := num_pieces - 1
+					if num_pieces = 1 then
+						set_error ("  Game Over: You Win!%N")
+						game_finished := TRUE
+					else
 						set_error ("  Game In Progress...%N")
 					end
+				else
+					set_error ("  Error: Invalid move of B from ("
+					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
+				end
+			--end
+
+			--in case of queen
+			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "Q" then
+				if chess_board.queen_is_valid_move (r1, c1, r2, c2) then
+					if chess_board.block_exists_queen(r1,c1,r2,c2) then
+						set_error ("  Error: Block exists between ("
+						+ r1.out + ", " + c1.out + ") and (" + r2.out + ", " + c2.out + ")%N")
+					else
+						chess_board.capture (r1, c1, r2, c2)
+						num_pieces := num_pieces - 1
+						if num_pieces = 1 then
+							set_error ("  Game Over: You Win!%N")
+							game_finished := TRUE
+						else
+							set_error ("  Game In Progress...%N")
+						end
+					end
+				else
+					set_error ("  Error: Invalid move of B from ("
+					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
+				end
+			--end
+
+			--in case of rook
+			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "R" then
+				if chess_board.rook_is_valid_move (r1, c1, r2, c2) then
+					if chess_board.block_exists_rook(r1,c1,r2,c2) then
+						set_error ("  Error: Block exists between ("
+						+ r1.out + ", " + c1.out + ") and (" + r2.out + ", " + c2.out + ")%N")
+					else
+						chess_board.capture (r1, c1, r2, c2)
+						num_pieces := num_pieces - 1
+						if num_pieces = 1 then
+							set_error ("  Game Over: You Win!%N")
+							game_finished := TRUE
+						else
+							set_error ("  Game In Progress...%N")
+						end
+					end
+				else
+					set_error ("  Error: Invalid move of B from ("
+					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
+				end
+			--end
+
+			--in case of pawn
+
+			--if chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "P" then
+			else
+				if chess_board.pawn_is_valid_move (r1, c1, r2, c2) then
+					chess_board.capture (r1, c1, r2, c2)
+					num_pieces := num_pieces - 1
+						if num_pieces = 1 then
+							set_error ("  Game Over: You Win!%N")
+							game_finished := TRUE
+						else
+							set_error ("  Game In Progress...%N")
+						end
 				else
 					set_error ("  Error: Invalid move of B from ("
 					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
