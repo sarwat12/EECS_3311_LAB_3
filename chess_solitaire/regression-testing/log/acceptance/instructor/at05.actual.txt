@@ -62,21 +62,21 @@
   Q+++
 ->move_and_capture(4,1,4,3)
   # of chess pieces on board: 2
-  Game In Progress...
+  Game Over: You Lose!
   ...B
   ....
   ....
   ..Q.
 ->moves(4,1)
   # of chess pieces on board: 2
-  Error: Slot @ (4, 1) not occupied
+  Error: Game already over
   ...B
   ....
   ....
   ..Q.
 ->move_and_capture(4,1,4,3)
   # of chess pieces on board: 2
-  Error: Slot @ (4, 1) not occupied
+  Error: Game already over
   ...B
   ....
   ....

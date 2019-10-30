@@ -109,30 +109,38 @@ feature --Queries about chess
 				if r2 = r1 + 2 and c2 = c1 + 1 then --checking down-right
 					if board.item (r1 + 1, c1) /= 0 then
 						knight_block := TRUE
-					else
-						Result := TRUE
 					end
+					Result := TRUE
 				end
 				if r2 = r1 + 2 and c2 = c1 - 1 then --checking down-left
 					if board.item (r1 + 1, c1) /= 0 then
 						knight_block := TRUE
-					else
-						Result := TRUE
 					end
+					Result := TRUE
 				end
 				if r2 = r1 - 2 and c2 = c1 + 1 then --checking up-right
 					if board.item (r1 - 1, c1) /= 0 then
 						knight_block := TRUE
-					else
-						Result := TRUE
 					end
+					Result := TRUE
 				end
 				if r2 = r1 - 2 and c2 = c1 - 1 then --checking up-left
 					if board.item (r1 - 1, c1) /= 0 then
 						knight_block := TRUE
-					else
-						Result := TRUE
 					end
+					Result := TRUE
+				end
+				if r2 = r1 + 1 and c2 = c1 + 2 then --checking down-right again
+					if board.item (r1 + 1, c1) /= 0 then
+						knight_block := TRUE
+					end
+					Result := TRUE
+				end
+				if r2 = r1 +- 1 and c2 = c1 - 2 then --checking down-right again
+					if board.item (r1 - 1, c1) /= 0 then
+						knight_block := TRUE
+					end
+					Result := TRUE
 				end
 			end
 		end
@@ -184,7 +192,7 @@ feature --Queries about chess
 		do
 			Result := FALSE
 
-			if is_valid_index (r2, c2)  and (r2 = r1 + 1) and (c2 = c1 + 1) then
+			if is_valid_index (r2, c2)  and (r2 = r1 - 1) and (c2 = c1 + 1) then
 				Result := TRUE
 			end
 		end

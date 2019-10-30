@@ -116,6 +116,18 @@ feature -- model operations
 						if num_pieces = 1 then
 							set_error ("  Game Over: You Win!%N")
 							game_finished := TRUE
+						elseif num_pieces = 2 then
+							across 1 |..| 4 is i loop
+								across 1|..| 4 is j loop
+									if (chess_board.board.item (i, j) /= 0) and
+									(chess_board.piece_mapping.item (chess_board.board.item (i, j)) /~ "B") then
+										if not chess_board.bishop_is_valid_move (r2, c2, i, j) then
+											set_error ("  Game Over: You Lose!%N")
+											game_finished := TRUE
+										end
+									end
+								end
+							end
 						else
 							set_error ("  Game In Progress...%N")
 						end
@@ -138,6 +150,24 @@ feature -- model operations
 						if num_pieces = 1 then
 							set_error ("  Game Over: You Win!%N")
 							game_finished := TRUE
+						elseif num_pieces = 2 then
+							across 1 |..| 4 is i loop
+								across 1|..| 4 is j loop
+--									if (chess_board.board.item (i, j) /= 0) and
+--									(chess_board.piece_mapping.item (chess_board.board.item (i, j)) /~ "N") then
+--										if not chess_board.knight_is_valid_move (r2, c2, i, j) then
+--											set_error ("  Game Over: You Lose!%N")
+--											game_finished := TRUE
+--										end
+									if (chess_board.board.item (i, j) /= 0) and
+									(chess_board.piece_mapping.item (chess_board.board.item (i, j)) ~ "R") then
+										if not chess_board.rook_is_valid_move (i, j, r2, c2) then
+											set_error ("  Game Over: You Lose!%N")
+											game_finished := TRUE
+										end
+									end
+								end
+							end
 						else
 							set_error ("  Game In Progress...%N")
 						end
@@ -156,6 +186,18 @@ feature -- model operations
 					if num_pieces = 1 then
 						set_error ("  Game Over: You Win!%N")
 						game_finished := TRUE
+					elseif num_pieces = 2 then
+							across 1 |..| 4 is i loop
+								across 1|..| 4 is j loop
+									if (chess_board.board.item (i, j) /= 0) and
+									(chess_board.piece_mapping.item (chess_board.board.item (i, j)) /~ "K") then
+										if not chess_board.king_is_valid_move (r2, c2, i, j) then
+											set_error ("  Game Over: You Lose!%N")
+											game_finished := TRUE
+										end
+									end
+								end
+							end
 					else
 						set_error ("  Game In Progress...%N")
 					end
@@ -177,6 +219,18 @@ feature -- model operations
 						if num_pieces = 1 then
 							set_error ("  Game Over: You Win!%N")
 							game_finished := TRUE
+						elseif num_pieces = 2 then
+							across 1 |..| 4 is i loop
+								across 1|..| 4 is j loop
+									if (chess_board.board.item (i, j) /= 0) and
+									(chess_board.piece_mapping.item (chess_board.board.item (i, j)) /~ "Q") then
+										if not chess_board.queen_is_valid_move (r2, c2, i, j) then
+											set_error ("  Game Over: You Lose!%N")
+											set_game_finished (TRUE)
+										end
+									end
+								end
+							end
 						else
 							set_error ("  Game In Progress...%N")
 						end
@@ -199,6 +253,18 @@ feature -- model operations
 						if num_pieces = 1 then
 							set_error ("  Game Over: You Win!%N")
 							game_finished := TRUE
+						elseif num_pieces = 2 then
+							across 1 |..| 4 is i loop
+								across 1|..| 4 is j loop
+									if (chess_board.board.item (i, j) /= 0) and
+									(chess_board.piece_mapping.item (chess_board.board.item (i, j)) /~ "R") then
+										if not chess_board.rook_is_valid_move (r2, c2, i, j) then
+											set_error ("  Game Over: You Lose!%N")
+											game_finished := TRUE
+										end
+									end
+								end
+							end
 						else
 							set_error ("  Game In Progress...%N")
 						end
@@ -219,6 +285,18 @@ feature -- model operations
 						if num_pieces = 1 then
 							set_error ("  Game Over: You Win!%N")
 							game_finished := TRUE
+						elseif num_pieces = 2 then
+							across 1 |..| 4 is i loop
+								across 1|..| 4 is j loop
+									if (chess_board.board.item (i, j) /= 0) and
+									(chess_board.piece_mapping.item (chess_board.board.item (i, j)) /~ "P") then
+										if not chess_board.pawn_is_valid_move (r2, c2, i, j) then
+											set_error ("  Game Over: You Lose!%N")
+											game_finished := TRUE
+										end
+									end
+								end
+							end
 						else
 							set_error ("  Game In Progress...%N")
 						end
