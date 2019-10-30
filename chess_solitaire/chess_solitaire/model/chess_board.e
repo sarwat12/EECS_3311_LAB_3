@@ -68,10 +68,14 @@ feature --Queries about chess
 		end
 
 	queen_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
+		local
+			a, b: INTEGER
 		do
 			Result := FALSE
+			a := r2 - r1
+			b := c2 - c1
 			if is_valid_index (r2, c2) then
-				if ((r2 - r1) = (c2 - c1)) then
+				if a.abs = b.abs then
 					Result := TRUE
 				end
 				if r2 = r1 then
@@ -394,21 +398,21 @@ feature --Commands
 								Result.append("+")
 							else
 								Result.append (".")
-							end
+							end  --and (not block_exists_queen (row, col, i, j))
 						elseif piece_mapping.item (board.item (row, col)) ~ "Q" then
-							if queen_is_valid_move (row, col, i, j) and (not block_exists_queen (row, col, i, j)) then
+							if queen_is_valid_move (row, col, i, j) then
 								Result.append("+")
 							else
 								Result.append (".")
 							end
 						elseif piece_mapping.item (board.item (row, col)) ~ "B" then
-							if bishop_is_valid_move (row, col, i, j) and (not block_exists_bishop (row, col, i, j)) then
+							if bishop_is_valid_move (row, col, i, j) then
 								Result.append("+")
 							else
 								Result.append (".")
 							end
 						elseif piece_mapping.item (board.item (row, col)) ~ "N" then
-							if knight_is_valid_move (row, col, i, j) and knight_block = FALSE then
+							if knight_is_valid_move (row, col, i, j) then
 								Result.append("+")
 							else
 								Result.append (".")

@@ -264,7 +264,19 @@ feature -- model operations
 			start := 0
 		end
 
-
+--	check_game_over: BOOLEAN
+--		local
+--			a, b : INTEGER
+--		do
+--			Result := FALSE
+--			if num_pieces = 2 then
+--				across 1 |..| 4 is i loop
+--					across 1|..| 4 is j loop
+--							
+--					end	
+--				end
+--			end
+--		end
 
 
 feature -- queries
