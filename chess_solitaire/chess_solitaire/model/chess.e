@@ -21,18 +21,18 @@ feature {NONE} -- Initialization
 			-- Initialization for `Current'.
 		do
 			create chess_board.make
-			create message.make_empty
 			create error.make_empty
 			num_pieces := 0
 			game_started:= FALSE
 			game_finished:= FALSE
 			start := 1
+		ensure
+			no_pieces: num_pieces = 0
 		end
 
 feature --Implementation
 
 	chess_board: CHESS_BOARD
-	message: STRING
 	error: STRING
 	num_pieces: INTEGER
 	game_started: BOOLEAN
@@ -40,7 +40,7 @@ feature --Implementation
 	start: INTEGER
 
 
-feature -- model operations
+feature -- chess operations
 
 	setup_chess(c: INTEGER ; row: INTEGER_32 ; col: INTEGER_32)
 		require
@@ -56,6 +56,8 @@ feature -- model operations
 			chess_board.board.put (c, row, col)
 			num_pieces := num_pieces + 1
 			set_start
+		ensure
+			piece_incremented: num_pieces = old num_pieces + 1
 		end
 
 	start_game
@@ -80,7 +82,6 @@ feature -- model operations
 			valid_slot:
 				row > 0 or row < 5 or col > 0 or col < 5
 		do
-
 			set_start
 			chess_board.set_x (row)
 			chess_board.set_y (col)
@@ -136,8 +137,6 @@ feature -- model operations
 					set_error ("  Error: Invalid move of B from ("
 					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
 				end
-			--end
-
 			--in case of knight
 			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "N" then
 				if chess_board.knight_is_valid_move (r1, c1, r2, c2) then
@@ -176,8 +175,6 @@ feature -- model operations
 					set_error ("  Error: Invalid move of B from ("
 					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
 				end
-			--end
-
 			--in case of king
 			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "K" then
 				if chess_board.king_is_valid_move (r1, c1, r2, c2) then
@@ -205,8 +202,6 @@ feature -- model operations
 					set_error ("  Error: Invalid move of B from ("
 					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
 				end
-			--end
-
 			--in case of queen
 			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "Q" then
 				if chess_board.queen_is_valid_move (r1, c1, r2, c2) then
@@ -239,8 +234,6 @@ feature -- model operations
 					set_error ("  Error: Invalid move of B from ("
 					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
 				end
-			--end
-
 			--in case of rook
 			elseif chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "R" then
 				if chess_board.rook_is_valid_move (r1, c1, r2, c2) then
@@ -273,11 +266,7 @@ feature -- model operations
 					set_error ("  Error: Invalid move of B from ("
 					+ r1.out + ", " + c1.out + ") to (" + r2.out + ", " + c2.out + ")%N")
 				end
-			--end
-
-			--in case of pawn
-
-			--if chess_board.piece_mapping.item (chess_board.board.item (r1, c1)) ~ "P" then
+				--in case of pawn
 			else
 				if chess_board.pawn_is_valid_move (r1, c1, r2, c2) then
 					chess_board.capture (r1, c1, r2, c2)
@@ -342,20 +331,6 @@ feature -- model operations
 			start := 0
 		end
 
---	check_game_over: BOOLEAN
---		local
---			a, b : INTEGER
---		do
---			Result := FALSE
---			if num_pieces = 2 then
---				across 1 |..| 4 is i loop
---					across 1|..| 4 is j loop
---							
---					end	
---				end
---			end
---		end
-
 
 feature -- queries
 	out : STRING
@@ -371,10 +346,12 @@ feature -- queries
 			if not error.is_empty then
 				Result.append (error)
 			end
-
-
 			Result.append (chess_board.out)
 		end
+
+invariant
+	fixed_number_pieces:
+		num_pieces >=0 and num_pieces <= 16
 
 end
 

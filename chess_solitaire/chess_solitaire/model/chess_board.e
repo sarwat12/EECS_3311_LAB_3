@@ -20,37 +20,27 @@ feature --Constructor
 	make
 		do
 			create board.make_filled (0, 4, 4)
-			num_pieces := 0
 			create piece_mapping.make_empty
 			set_mapping
-			create moves_board.make_filled ([0, 0], 4, 4)
+		ensure
+			empty_board:
+				across 1 |..| 4 is i all
+					across 1 |..| 4 is j all
+						board.item (i, j) = 0
+					end
+				end
 		end
 
 feature --Board Implementation
 	board: ARRAY2[INTEGER] --multi-dimesional board for storing and representing chess pieces
-	num_pieces: INTEGER
 	piece_mapping: ARRAY[STRING]  --Mapping for each chess piece to its corresponding integer
 	x: INTEGER --for later use in ETF_MOVES
 	y: INTEGER --for later use in ETF_MOVES
-	moves_board: ARRAY2[TUPLE[a: INTEGER; b:INTEGER]] --for later use in ETF_MOVES
 	moves_trigger: INTEGER  --signal for initiating ET_MOVES output
 	knight_block: BOOLEAN --used for verifying blocks for knight movements
 
 
-feature --Queries about the board
-	chess_at (row: INTEGER; col: INTEGER):STRING
-		do
-			create Result.make_empty
-			Result := piece_mapping.item (board.item (row, col))
-		end
-
-	is_valid_index(row: INTEGER; col: INTEGER): BOOLEAN
-		do
-			Result := not (row < 1 or row > 4 or col < 1 or col > 4)
-		end
-
-
-feature --Queries about chess
+feature --Queries about chess pieces
 	king_is_valid_move(r1:INTEGER; c1: INTEGER; r2: INTEGER; c2: INTEGER):BOOLEAN
 		do
 			Result := FALSE
@@ -305,72 +295,10 @@ feature --Queries about chess
 			end
 		end
 
-feature --Piece Movements	
-
-    move_up (row: INTEGER; col: INTEGER)
-    	do
-			if is_valid_index (row - 1, col) then
-				board.put (board.item (row, col), row - 1, col)
-				board.put (0, row, col)
-			end
-    	end
-
-    move_down (row: INTEGER col: INTEGER)
-    	do
-			if is_valid_index (row + 1, col) then
-				board.put (board.item (row, col), row + 1, col)
-				board.put (0, row, col)
-			end
-    	end
-
-	move_left (row: INTEGER; col: INTEGER)
+		is_valid_index(row: INTEGER; col: INTEGER): BOOLEAN
 		do
-			if is_valid_index (row, col - 1) then
-				board.put (board.item (row, col), row, col - 1)
-				board.put (0, row, col)
-			end
+			Result := not (row < 1 or row > 4 or col < 1 or col > 4)
 		end
-
-	move_right (row: INTEGER; col: INTEGER)
-		do
-			if is_valid_index (row, col + 1) then
-				board.put (board.item (row, col), row, col + 1)
-				board.put (0, row, col)
-			end
-		end
-
-	move_diagonal_left_up (row: INTEGER; col: INTEGER)
-		do
-			if is_valid_index (row - 1, col - 1) then
-				board.put (board.item (row, col), row - 1, col - 1)
-				board.put (0, row, col)
-			end
-		end
-
-	move_diagonal_right_up (row: INTEGER; col: INTEGER)
-		do
-			if is_valid_index (row - 1, col + 1) then
-				board.put (board.item (row, col), row - 1, col + 1)
-				board.put (0, row, col)
-			end
-		end
-
-	move_diagonal_left_down (row: INTEGER; col: INTEGER)
-		do
-			if is_valid_index (row + 1, col - 1) then
-				board.put (board.item (row, col), row + 1, col - 1)
-				board.put (0, row, col)
-			end
-		end
-
-	move_diagonal_right_down (row: INTEGER; col: INTEGER)
-		do
-			if is_valid_index (row + 1, col + 1) then
-				board.put (board.item (row, col), row + 1, col + 1)
-				board.put (0, row, col)
-			end
-		end
-
 
 feature --Commands
 
@@ -379,8 +307,6 @@ feature --Commands
 			board.force (board.item (r1, c1), r2, c2)
 			board.force (0, r1, c1)
 		end
-
-
 
     set_mapping
 		do
@@ -479,6 +405,7 @@ feature --Commands
 				y := col
 			end
 
+
 feature --Redefined 'out' feature
 	out: STRING
 		do
@@ -489,7 +416,6 @@ feature --Redefined 'out' feature
 			else
 				Result.append (print_board)
 			end
-
 		end
 
 invariant
